@@ -20,5 +20,5 @@ public enum InputType {
         }
     };
 
-    public abstract TypedInput convert(String value);
+    public abstract TypedInput convert(String value) throws IllegalArgumentException;
 }

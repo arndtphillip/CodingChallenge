@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arguments {
+
     private String inputFile;
     private InputType inputType;
     private List<Operation> operations = new ArrayList<>();
-    private int threads = 1;
+    private int threads;
     private String outputFile;
 
     public String getInputFile() {
@@ -51,4 +52,5 @@ public class Arguments {
             System.out.println("Using output file " + outputFile);
         }
     }
+
 }

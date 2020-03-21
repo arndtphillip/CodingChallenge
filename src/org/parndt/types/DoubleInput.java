@@ -6,7 +6,7 @@ public class DoubleInput implements TypedInput, Negatable {
 
     private double value;
 
-    public DoubleInput(String value) {
+    public DoubleInput(String value) throws IllegalArgumentException {
         this.value = Double.parseDouble(value);
     }
 

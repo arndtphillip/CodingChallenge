@@ -1,6 +1,5 @@
 package org.parndt.io;
 
-import org.parndt.InputChunk;
 import org.parndt.Statistics;
 
 import java.io.BufferedReader;
@@ -22,41 +21,25 @@ public class LineReader {
         this.statistics = Statistics.getInstance();
     }
 
-    public List<String> read() throws IOException {
-        List<String> resultLines = new ArrayList<>();
-
-        File file = new File(inputFile);
-
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            resultLines.add(line);
-            statistics.updateStatisticsWithLine(line);
-        }
-
-        reader.close();
-
-        return resultLines;
-    }
-
-    public List<InputChunk> readAsChunks() throws IOException {
-        List<InputChunk> chunks = new ArrayList<>();
+    public List<Chunk> readAsChunks() throws IOException {
+        List<Chunk> chunks = new ArrayList<>();
 
         File file = new File(inputFile);
         long chunkSize = getChunkSize(file);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            int chunkIndex = 0;
-            InputChunk chunk = new InputChunk(chunkIndex);
+            int chunkId = 0;
+            Chunk chunk = new Chunk(chunkId);
             String line;
+
             while ((line = reader.readLine()) != null) {
-                chunk.addValue(line);
+                chunk.addLine(line);
+
                 statistics.updateStatisticsWithLine(line);
 
                 if (chunk.length() > chunkSize) {
                     chunks.add(chunk);
-                    chunk = new InputChunk(chunkIndex++);
+                    chunk = new Chunk(chunkId++);
                 }
             }
 
@@ -67,7 +50,7 @@ public class LineReader {
         return chunks;
     }
 
-    public long getChunkSize(File file) {
+    private long getChunkSize(File file) {
         return file.length() / threads;
     }
 }

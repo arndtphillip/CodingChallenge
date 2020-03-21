@@ -7,7 +7,7 @@ public class IntInput implements TypedInput, Negatable, Reversable {
 
     private int value;
 
-    public IntInput(String value) {
+    public IntInput(String value) throws IllegalArgumentException {
         this.value = Integer.parseInt(value);
     }
 
