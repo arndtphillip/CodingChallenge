@@ -24,4 +24,11 @@ public class IntInputTest {
         input.reverse();
         Assert.assertEquals("101", input.getStringValue());
     }
+
+    @Test
+    public void reverseNegative() {
+        IntInput input = new IntInput("-42");
+        input.reverse();
+        Assert.assertEquals("-24", input.getStringValue());
+    }
 }

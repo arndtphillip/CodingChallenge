@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TypeParser {
-    private List<String> rawData;
+    private InputChunk rawData;
     private InputType inputType;
 
-    public TypeParser(InputType inputType, List<String> rawData) {
+    public TypeParser(InputType inputType, InputChunk rawData) {
         this.rawData = rawData;
         this.inputType = inputType;
     }
@@ -18,7 +18,7 @@ public class TypeParser {
     public List<TypedInput> parse() {
         List<TypedInput> result = new LinkedList<>();
 
-        for (String element : rawData) {
+        for (String element : rawData.getValues()) {
             result.add(inputType.convert(element));
         }
 

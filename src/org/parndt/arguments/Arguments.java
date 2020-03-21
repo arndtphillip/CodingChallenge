@@ -3,13 +3,13 @@ package org.parndt.arguments;
 import org.parndt.operations.Operation;
 import org.parndt.types.InputType;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Arguments {
     private String inputFile;
     private InputType inputType;
-    private Set<Operation> operations = new HashSet<>();
+    private List<Operation> operations = new ArrayList<>();
     private int threads = 1;
     private String outputFile;
 
@@ -21,7 +21,7 @@ public class Arguments {
         return inputType;
     }
 
-    public Set<Operation> getOperations() {
+    public List<Operation> getOperations() {
         return operations;
     }
 

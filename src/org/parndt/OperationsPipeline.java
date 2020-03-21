@@ -8,10 +8,10 @@ import java.util.LinkedList;
 import java.util.Set;
 
 public class OperationsPipeline {
-    public Set<Operation> operations;
+    public List<Operation> operations;
     public List<TypedInput> data;
 
-    public OperationsPipeline(Set<Operation> operations, List<TypedInput> data) {
+    public OperationsPipeline(List<Operation> operations, List<TypedInput> data) {
         this.operations = operations;
         this.data = data;
     }

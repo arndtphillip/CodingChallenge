@@ -6,6 +6,7 @@ import org.parndt.io.LineWriter;
 import org.parndt.types.TypedInput;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,9 +19,27 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		Arguments arguments = new Arguments(args);
-		List<String> rawData = new LineReader(arguments.getInputFile()).readAsChunks(1);
-		List<TypedInput> typedData = new TypeParser(arguments.getInputType(), rawData).parse();
-		List<String> processedData = new OperationsPipeline(arguments.getOperations(), typedData).process();
+		List<InputChunk> rawData = new LineReader(arguments.getInputFile(), arguments.getThreads()).readAsChunks();
+
+		List<Worker> workers = new ArrayList<>();
+
+		for (InputChunk chunk : rawData) {
+			Worker worker = new Worker(arguments.getInputType(), arguments.getOperations(), chunk);
+			worker.start();
+			workers.add(worker);
+		}
+
+		List<String> processedData = new ArrayList<>();
+
+		try {
+			for (Worker worker : workers) {
+				worker.join();
+				processedData.addAll(worker.getProcessedData());
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		new LineWriter(arguments.getOutputFile(), processedData).write();
 		
 		// DO NOT CHANGE THE FOLLOWING LINES OF CODE
