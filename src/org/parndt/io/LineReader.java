@@ -44,7 +44,7 @@ public class LineReader {
         List<InputChunk> chunks = new ArrayList<>();
 
         File file = new File(inputFile);
-        long chunkSize = getChunkSize(file, threads);
+        long chunkSize = getChunkSize(file);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             int chunkIndex = 0;
@@ -67,7 +67,7 @@ public class LineReader {
         return chunks;
     }
 
-    public long getChunkSize(File file, int threads) {
+    public long getChunkSize(File file) {
         return file.length() / threads;
     }
 }

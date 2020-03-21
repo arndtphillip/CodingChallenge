@@ -5,7 +5,7 @@ import org.parndt.operations.Reversable;
 
 public class IntInput implements TypedInput, Negatable, Reversable {
 
-    private Integer value;
+    private int value;
 
     public IntInput(String value) {
         this.value = Integer.parseInt(value);
@@ -13,7 +13,7 @@ public class IntInput implements TypedInput, Negatable, Reversable {
 
     @Override
     public String getStringValue() {
-        return value.toString();
+        return Integer.toString(value);
     }
 
     @Override
@@ -23,7 +23,17 @@ public class IntInput implements TypedInput, Negatable, Reversable {
 
     @Override
     public void reverse() {
-        StringBuilder sb = new StringBuilder(value.toString());
-        value = Integer.parseInt(sb.reverse().toString());
+        int absValue = Math.abs(value);
+        StringBuilder sb = new StringBuilder(Integer.toString(absValue));
+        absValue = Integer.parseInt(sb.reverse().toString());
+
+        // handle negative values
+        boolean negative = value < 0;
+
+        if (negative) {
+            value = -absValue;
+        } else {
+            value = absValue;
+        }
     }
 }

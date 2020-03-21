@@ -4,7 +4,7 @@ import org.parndt.operations.Negatable;
 
 public class DoubleInput implements TypedInput, Negatable {
 
-    private Double value;
+    private double value;
 
     public DoubleInput(String value) {
         this.value = Double.parseDouble(value);
@@ -12,7 +12,7 @@ public class DoubleInput implements TypedInput, Negatable {
 
     @Override
     public String getStringValue() {
-        return value.toString();
+        return Double.toString(value);
     }
 
     @Override
