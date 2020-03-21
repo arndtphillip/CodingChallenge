@@ -14,7 +14,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		Arguments arguments = new Arguments(args);
-
 		new ProcessingWorkflow(arguments).process();
 		
 		// DO NOT CHANGE THE FOLLOWING LINES OF CODE
