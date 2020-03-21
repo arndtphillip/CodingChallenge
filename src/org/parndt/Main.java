@@ -15,11 +15,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Arguments arguments = new Arguments(args);
 
-		try {
-			new ProcessingWorkflow(arguments).process();
-		} catch (ExecutionException | InterruptedException e) {
-			e.printStackTrace();
-		}
+		new ProcessingWorkflow(arguments).process();
 		
 		// DO NOT CHANGE THE FOLLOWING LINES OF CODE
 		System.out.println(String.format("Processed %d lines (%d of which were unique)", //
