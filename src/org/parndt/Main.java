@@ -1,9 +1,9 @@
 package org.parndt;
 
 import org.parndt.arguments.Arguments;
+import org.parndt.processing.ProcessingException;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Main class.
@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ProcessingException {
 		Arguments arguments = new Arguments(args);
 		new ProcessingWorkflow(arguments).process();
 		

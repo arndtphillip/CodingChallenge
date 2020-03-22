@@ -6,31 +6,29 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 public class LineWriter {
 
     private String outputFile;
-    private List<Future<Chunk>> futures;
+    private List<Chunk> chunks;
 
-    public LineWriter(String outputFile, List<Future<Chunk>> futures) {
+    public LineWriter(String outputFile, List<Chunk> chunks) {
         this.outputFile = outputFile;
-        this.futures = futures;
+        this.chunks = chunks;
     }
 
-    public void write() throws IOException, ExecutionException, InterruptedException {
+    public void write() throws IOException {
         File file = new File(outputFile);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (Future<Chunk> future : futures) {
-                // TODO: order of chunks
-                Chunk chunk = future.get();
+            for (int i = 0; i < chunks.size(); i++) {
+                List<String> lines = chunks.get(i).getLines();
 
-                for (String line : chunk.getLines()) {
-                    writer.append(line);
-                    writer.newLine();
-                    // TODO: remove last new line
+                for (int j = 0; j < lines.size(); j++) {
+                    writer.append(lines.get(j));
+
+                    if (i < chunks.size() - 1 || j < lines.size() - 1)
+                        writer.newLine();
                 }
             }
         }

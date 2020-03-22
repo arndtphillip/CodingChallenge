@@ -8,13 +8,13 @@ import org.parndt.types.TypedInput;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class OperationsProcessor implements Callable<Chunk> {
+public class ChunkProcessor implements Callable<Chunk> {
 
     private InputType inputType;
     private List<Operation> operations;
     private Chunk chunk;
 
-    public OperationsProcessor(InputType inputType, List<Operation> operations, Chunk chunk) {
+    public ChunkProcessor(InputType inputType, List<Operation> operations, Chunk chunk) {
         this.inputType = inputType;
         this.operations = operations;
         this.chunk = chunk;
