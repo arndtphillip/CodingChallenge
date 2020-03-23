@@ -27,10 +27,13 @@ public class ProcessingWorkflow {
     }
 
     /**
-     * Main process method. This
+     * Main process method. This implements the workflow of the application. The input file is read as a list of
+     * {@link Chunk}, which are processed by {@link ProcessingWorkflow#processChunks(List)}. Afterwards the result is
+     * written to the output file or to System.out, depending on {@link Arguments#writeToFile()}.
      *
-     * @throws IOException
-     * @throws ProcessingException
+     * @throws IOException Throws an IOException if an error occurs while reading the input or writing the output file.
+     * @throws ProcessingException Throws an {@link ProcessingException} if an error occurs while parsing or processing
+     * the chunks in {@link ProcessingWorkflow#processChunks(List)}.
      */
     public void process() throws IOException, ProcessingException {
         // read from file
@@ -50,11 +53,15 @@ public class ProcessingWorkflow {
     }
 
     /**
+     * This methods parses and processes a list of {@link Chunk} and returns the resulting {@link Chunk} list.
      *
+     * At first, a thread pool with {@link Arguments#getThreads()} threads is created and the parsing and
+     * processing work is dispatched to the threads. Afterwards the results are collected, merged and returned.
      *
      * @param chunks The chunks to process
      * @return The processed chunks
-     * @throws ProcessingException
+     * @throws ProcessingException Throws a {@link ProcessingException} if an error occurs while parsing or processing
+     * the chunks. All threads get cancelled.
      */
     public List<Chunk> processChunks(List<Chunk> chunks) throws ProcessingException {
         ExecutorService executor = Executors.newFixedThreadPool(arguments.getThreads());

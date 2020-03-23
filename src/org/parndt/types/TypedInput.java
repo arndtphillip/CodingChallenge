@@ -8,9 +8,9 @@ package org.parndt.types;
 public interface TypedInput {
 
     /**
-     * Converts and returns the value of the input as String
+     * Converts and returns the value of the input as string
      *
-     * @return The value as String
+     * @return The value as string
      */
     String getStringValue();
 }

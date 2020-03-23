@@ -2,6 +2,9 @@ package org.parndt.types;
 
 import org.parndt.operations.Negatable;
 
+/**
+ * Data class for double input values
+ */
 public class DoubleInput implements TypedInput, Negatable {
 
     private double value;
@@ -10,6 +13,7 @@ public class DoubleInput implements TypedInput, Negatable {
         this.value = Double.parseDouble(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getStringValue() {
         return Double.toString(value);

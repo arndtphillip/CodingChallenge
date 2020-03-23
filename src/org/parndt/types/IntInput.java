@@ -3,6 +3,11 @@ package org.parndt.types;
 import org.parndt.operations.Negatable;
 import org.parndt.operations.Reversable;
 
+/**
+ * Data class int input values
+ *
+ * @author Philipp Arndt
+ */
 public class IntInput implements TypedInput, Negatable, Reversable {
 
     private int value;
@@ -11,6 +16,7 @@ public class IntInput implements TypedInput, Negatable, Reversable {
         this.value = Integer.parseInt(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getStringValue() {
         return Integer.toString(value);
