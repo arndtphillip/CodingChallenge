@@ -17,7 +17,7 @@ public class ArgumentsTest {
     private Arguments arguments;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         String[] args = new String[] {
                 "--input", "test.txt",
                 "--inputtype", "string",
@@ -26,7 +26,7 @@ public class ArgumentsTest {
                 "--output", "result.txt"
         };
 
-        this.arguments = new Arguments(args);
+        arguments = new Arguments(args);
     }
 
     @Test
@@ -53,5 +53,24 @@ public class ArgumentsTest {
     @Test
     public void getOutputFile() {
         Assert.assertEquals("result.txt", arguments.getOutputFile());
+    }
+
+    @Test
+    public void writeToFile() {
+        assertTrue(arguments.writeToFile());
+    }
+
+    @Test
+    public void writeToSystemOut() {
+        String[] args = new String[] {
+                "--input", "test.txt",
+                "--inputtype", "string",
+                "--operations", "neg,reverse",
+                "--threads", "4",
+        };
+
+        arguments = new Arguments(args);
+
+        assertFalse(arguments.writeToFile());
     }
 }

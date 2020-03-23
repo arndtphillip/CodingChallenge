@@ -20,13 +20,18 @@ import java.util.concurrent.*;
  */
 public class ProcessingWorkflow {
 
-    /** */
     private Arguments arguments;
 
     public ProcessingWorkflow(Arguments arguments) {
         this.arguments = arguments;
     }
 
+    /**
+     * Main process method. This
+     *
+     * @throws IOException
+     * @throws ProcessingException
+     */
     public void process() throws IOException, ProcessingException {
         // read from file
         List<Chunk> chunks = new LineReader(arguments.getInputFile(), arguments.getThreads()).readAsChunks();
@@ -34,10 +39,23 @@ public class ProcessingWorkflow {
         // parse, process, merge back
         List<Chunk> processedChunks = processChunks(chunks);
 
-        // write to file
-        new LineWriter(arguments.getOutputFile(), processedChunks).write();
+        LineWriter writer = new LineWriter(processedChunks);
+        if (arguments.writeToFile()) {
+            // write to file
+            writer.writeToFile(arguments.getOutputFile());
+        } else {
+            // write to system out
+            writer.writeToSystemOut();
+        }
     }
 
+    /**
+     *
+     *
+     * @param chunks The chunks to process
+     * @return The processed chunks
+     * @throws ProcessingException
+     */
     public List<Chunk> processChunks(List<Chunk> chunks) throws ProcessingException {
         ExecutorService executor = Executors.newFixedThreadPool(arguments.getThreads());
         List<Callable<Chunk>> callables = new ArrayList<>();

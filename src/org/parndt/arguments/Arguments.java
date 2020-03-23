@@ -47,9 +47,10 @@ public class Arguments {
 
         if (args.length > 9) {
             outputFile = args[9];
-        } else {
-            outputFile = "test1.txt";
-            System.out.println(String.format("Using output file %s.", outputFile));
         }
+    }
+
+    public boolean writeToFile() {
+        return outputFile != null;
     }
 }

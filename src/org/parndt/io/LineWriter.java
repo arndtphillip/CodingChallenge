@@ -9,15 +9,13 @@ import java.util.List;
 
 public class LineWriter {
 
-    private String outputFile;
     private List<Chunk> chunks;
 
-    public LineWriter(String outputFile, List<Chunk> chunks) {
-        this.outputFile = outputFile;
+    public LineWriter(List<Chunk> chunks) {
         this.chunks = chunks;
     }
 
-    public void write() throws IOException {
+    public void writeToFile(String outputFile) throws IOException {
         File file = new File(outputFile);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -33,5 +31,17 @@ public class LineWriter {
                 }
             }
         }
+    }
+
+    public void writeToSystemOut() {
+        System.out.println("Processed data: ");
+
+        for (Chunk chunk : chunks) {
+            for (String line : chunk.getLines()) {
+                System.out.println(line);
+            }
+        }
+
+        System.out.println();
     }
 }
