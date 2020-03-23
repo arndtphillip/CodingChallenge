@@ -4,7 +4,7 @@ import org.parndt.operations.Negatable;
 import org.parndt.operations.Reversable;
 
 /**
- * Data class int input values
+ * Data class int input values.
  *
  * @author Philipp Arndt
  */
@@ -22,11 +22,13 @@ public class IntInput implements TypedInput, Negatable, Reversable {
         return Integer.toString(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void negate() {
         value = -value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reverse() {
         int absValue = Math.abs(value);
