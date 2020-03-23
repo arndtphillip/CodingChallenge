@@ -53,7 +53,7 @@ public class ProcessingWorkflow {
     }
 
     /**
-     * This methods parses and processes a list of {@link Chunk} and returns the resulting {@link Chunk} list.
+     * This method parses and processes a list of {@link Chunk} and returns the resulting {@link Chunk} list.
      *
      * At first, a thread pool with {@link Arguments#getThreads()} threads is created and the parsing and
      * processing work is dispatched to the threads. Afterwards the results are collected, merged and returned.

@@ -47,4 +47,9 @@ public class IntInputTest {
         input.negate();
         Assert.assertEquals("-101", input.getStringValue());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsExceptionOnWrongInput() {
+        IntInput input = new IntInput("test");
+    }
 }
