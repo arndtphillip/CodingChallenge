@@ -11,6 +11,9 @@ public class StringInput implements TypedInput, Capitalizable, Reversable {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getStringValue() {
         return value;

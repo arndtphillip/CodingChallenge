@@ -27,6 +27,7 @@ public class LineWriter {
                 for (int j = 0; j < lines.size(); j++) {
                     writer.append(lines.get(j));
 
+                    // don't append a new new line if it is the last line in the last chunk
                     if (i < chunks.size() - 1 || j < lines.size() - 1)
                         writer.newLine();
                 }

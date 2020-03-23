@@ -39,7 +39,7 @@ public class LineReader {
 
                 if (chunk.length() > chunkSize) {
                     chunks.add(chunk);
-                    chunk = new Chunk(chunkId++);
+                    chunk = new Chunk(++chunkId);
                 }
             }
 

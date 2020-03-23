@@ -13,8 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+/**
+ * Class for the workflow of the application
+ *
+ * @author Philipp Arndt
+ */
 public class ProcessingWorkflow {
 
+    /** */
     private Arguments arguments;
 
     public ProcessingWorkflow(Arguments arguments) {

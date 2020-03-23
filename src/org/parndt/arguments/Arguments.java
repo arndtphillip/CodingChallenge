@@ -49,8 +49,7 @@ public class Arguments {
             outputFile = args[9];
         } else {
             outputFile = "test1.txt";
-            System.out.println("Using output file " + outputFile);
+            System.out.println(String.format("Using output file %s.", outputFile));
         }
     }
-
 }
